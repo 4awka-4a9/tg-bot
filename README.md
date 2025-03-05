@@ -21,4 +21,4 @@
   /create_password - команда создания пароля
 
 
-![](https://github.com/4awka_4a9/tg-bot/tg-bot-preview.gif)
+![](https://github.com/4awka_4a9/tg-bot/raw/tg-bot-preview.gif)
