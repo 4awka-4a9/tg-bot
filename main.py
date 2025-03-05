@@ -108,7 +108,7 @@ async def cmd_start(message: Message):
 async def cmd_start(message: Message):
     keyboard = PasswordReturn()
 
-    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса крипто-кошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6 ',reply_markup=keyboard)
+    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса криптокошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6 ',reply_markup=keyboard)
 
 @dp.message(F.text.lower() == "легкий")
 async def easy(message: types.Message):
