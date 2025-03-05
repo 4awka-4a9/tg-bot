@@ -21,4 +21,7 @@
   /create_password - команда создания пароля
 
 
+Прод версия телеграм бота - @Random_Letters_Generator_Bot
+
+
 ![](https://github.com/4awka-4a9/tg-bot/blob/main/tg-bot-preview.gif)
