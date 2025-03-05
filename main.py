@@ -1,3 +1,8 @@
+#BTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97
+#ETH - 0xc3006CD922641337053BfB34a919299754002Fa6
+#TETHER USD TRON NETWORK - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ
+#TETHER USD ETHEREUM NETWORK - 0xc3006CD922641337053BfB34a919299754002Fa6
+
 import asyncio
 import logging
 import sys
@@ -12,7 +17,7 @@ from aiogram.filters import CommandStart
 from aiogram import types
 from aiogram.types import Message
 from aiogram import F
-
+from aiogram.filters import Command
 
 TOKEN = config.BOT_TOKEN
 
@@ -43,22 +48,22 @@ def PasswordGenerate(difficulty):
 
     if difficulty == "easy":
 
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[0])
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[1])
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[2])
 
     else:
 
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[0])
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[1])
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[2])
-        for i in range(random.randrange(3, 4)):
+        for i in range(random.randrange(3, 5)):
             password += random.choice(chars[3])
 
     password = list(password)
@@ -69,9 +74,7 @@ def PasswordGenerate(difficulty):
 
     return(endPassword)
 
-
-@dp.message(CommandStart())
-async def cmd_start(message: types.Message):
+def PasswordReturn():
     kb = [
         [types.KeyboardButton(text="Легкий")],
         [types.KeyboardButton(text="Сложный")]
@@ -79,11 +82,33 @@ async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(
     keyboard=kb,
     resize_keyboard=True,
-    input_field_placeholder="Каокй пароль сгенерировать?")
+    input_field_placeholder="Какой пароль сгенерировать?")
+    return(keyboard)
 
+
+@dp.message(CommandStart())
+async def cmd_start(message: types.Message):
+    keyboard = PasswordReturn()
 
     await message.answer("Какой пароль создать?", reply_markup=keyboard)
 
+@dp.message(Command('about'))
+async def cmd_start(message: Message):
+    keyboard = PasswordReturn()
+
+    await message.answer('Этот телеграм-бот был создан мною в 15 лет! Он достаточно простой, тут всего 2 режима: Легкий пароль который в длинну 9-12 символов, он содержит большие и маленькие буквы а также цифры. Длинный пароль в длинну 12-20 символов и к нему добавляются спец-символы. ',reply_markup=keyboard)
+
+@dp.message(Command('generate_password'))
+async def cmd_start(message: Message):
+    keyboard = PasswordReturn()
+
+    await message.answer("Какой пароль создать?", reply_markup=keyboard)
+
+@dp.message(Command('donate'))
+async def cmd_start(message: Message):
+    keyboard = PasswordReturn()
+
+    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса крипто-кошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6 ',reply_markup=keyboard)
 
 @dp.message(F.text.lower() == "легкий")
 async def easy(message: types.Message):
@@ -97,17 +122,10 @@ async def hard(message: types.Message):
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
-    kb = [
-        [types.KeyboardButton(text="Легкий")],
-        [types.KeyboardButton(text="Сложный")]
-    ]
-    keyboard = types.ReplyKeyboardMarkup(
-    keyboard=kb,
-    resize_keyboard=True,
-    input_field_placeholder="Каокй пароль сгенерировать?")
-
+    keyboard = PasswordReturn()
 
     await message.answer("Какой пароль создать?", reply_markup=keyboard)
+
 
 
 async def main() -> None:
