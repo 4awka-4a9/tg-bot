@@ -96,7 +96,7 @@ async def cmd_start(message: types.Message):
 async def cmd_start(message: Message):
     keyboard = PasswordReturn()
 
-    await message.answer('Этот телеграм-бот был создан мною в 15 лет! Он достаточно простой, тут всего 2 режима: Легкий пароль который в длинну 9-12 символов, он содержит большие и маленькие буквы а также цифры. Длинный пароль в длинну 12-20 символов и к нему добавляются спец-символы. ',reply_markup=keyboard)
+    await message.answer('Этот телеграм-бот был создан мною в 15 лет! Он достаточно простой, тут всего 2 режима: Легкий пароль который в длинну 9-12 символов, он содержит большие и маленькие буквы а также цифры. Длинный пароль в длинну 12-20 символов и к нему добавляются спец-символы.',reply_markup=keyboard)
 
 @dp.message(Command('generate_password'))
 async def cmd_start(message: Message):
@@ -108,7 +108,7 @@ async def cmd_start(message: Message):
 async def cmd_start(message: Message):
     keyboard = PasswordReturn()
 
-    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса криптокошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6 ',reply_markup=keyboard)
+    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса криптокошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6\n https://github.com/4awka-4a9 ',reply_markup=keyboard)
 
 @dp.message(F.text.lower() == "легкий")
 async def easy(message: types.Message):
