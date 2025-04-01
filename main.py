@@ -18,6 +18,10 @@ from aiogram import types
 from aiogram.types import Message
 from aiogram import F
 from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardRemove, \
+    ReplyKeyboardMarkup, KeyboardButton, \
+    InlineKeyboardMarkup, InlineKeyboardButton
+
 
 TOKEN = config.BOT_TOKEN
 
@@ -75,14 +79,13 @@ def PasswordGenerate(difficulty):
     return(endPassword)
 
 def PasswordReturn():
-    kb = [
-        [types.KeyboardButton(text="Легкий")],
-        [types.KeyboardButton(text="Сложный")]
-    ]
-    keyboard = types.ReplyKeyboardMarkup(
-    keyboard=kb,
-    resize_keyboard=True,
-    input_field_placeholder="Какой пароль сгенерировать?")
+    types.easyButton = InlineKeyboardButton(text="Легкий")
+    types.hardButton = InlineKeyboardButton(text="Сложный")
+
+    keyboard = InlineKeyboardMarkup(input_field_placeholder="Какой пароль сгенерировать?", resize_keyboard=True)
+    #keyboard.row(easyButton, hardButton)
+    keyboard.add(easyButton)
+    keyboard.add(hardButton)
     return(keyboard)
 
 
@@ -94,9 +97,8 @@ async def cmd_start(message: types.Message):
 
 @dp.message(Command('about'))
 async def cmd_start(message: Message):
-    keyboard = PasswordReturn()
 
-    await message.answer('Этот телеграм-бот был создан мною в 15 лет! Он достаточно простой, тут всего 2 режима: Легкий пароль который в длинну 9-12 символов, он содержит большие и маленькие буквы а также цифры. Длинный пароль в длинну 12-20 символов и к нему добавляются спец-символы.',reply_markup=keyboard)
+    await message.answer('Этот телеграм-бот был создан мною в 15 лет! Он достаточно простой, тут всего 2 режима: Легкий пароль который в длинну 9-12 символов, он содержит большие и маленькие буквы а также цифры. Длинный пароль в длинну 12-20 символов и к нему добавляются спец-символы.')
 
 @dp.message(Command('generate_password'))
 async def cmd_start(message: Message):
@@ -106,9 +108,8 @@ async def cmd_start(message: Message):
 
 @dp.message(Command('donate'))
 async def cmd_start(message: Message):
-    keyboard = PasswordReturn()
 
-    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса криптокошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6\n https://github.com/4awka-4a9 ',reply_markup=keyboard)
+    await message.answer('Привет! Этот проект я разработал в свои 15 лет!!! Я начинающий программист и нуждаюсь в поддержке. Если тебе не жалко то можеш задонатить мне. Вот мои адреса криптокошельков:\nBTC - bc1qml9r2f7qud0zsatjf3kh4c6v9yetd8zer52t97\nETH - 0xc3006CD922641337053BfB34a919299754002Fa6\nUSDT TRC 20 - TJ1Zc5Y2SsNLMaQKzdy9XFT5iLAZHx7zGZ\nUSDT ERC 20 - 0xc3006CD922641337053BfB34a919299754002Fa6\n https://github.com/4awka-4a9 ')
 
 @dp.message(F.text.lower() == "легкий")
 async def easy(message: types.Message):
